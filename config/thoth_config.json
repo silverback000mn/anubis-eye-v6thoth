@@ -1,0 +1,12 @@
+{
+    "creation_settings": {
+        "accounts_per_hour": 20,
+        "max_attempts": 3,
+        "proxy_rotation": "every_5_accounts"
+    },
+    "quality_standards": {
+        "min_followers": 100,
+        "min_posts": 12,
+        "bio_required": true
+    }
+}

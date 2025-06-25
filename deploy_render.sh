@@ -17,4 +17,4 @@ fi
 npm run build --prefix frontend
 
 # 4. Inicialização do Sistema
-uvicorn CORE.anubis_connector:AnubisOrchestrator --host 0.0.0.0 --port $PORT --reload
+uvicorn core.anubis_connector:AnubisOrchestrator --host 0.0.0.0 --port $PORT --reload

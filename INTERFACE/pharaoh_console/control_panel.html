@@ -1,0 +1,17 @@
+<div class="pharaoh-panel">
+    <!-- Seção de Comandos Divinos -->
+    <div class="command-scroll">
+        <h3>𓂀 Ordens para Thoth</h3>
+        <input type="text" id="divine-command" placeholder="UPDATE MODULE RA">
+        <button onclick="sendCommand()">Executar</button>
+    </div>
+
+    <!-- Visualização Hieroglífica -->
+    <div class="hieroglyph-display" id="live-status">
+        <div class="glyph" v-for="account in accounts">
+            <span class="eye-of-ra"></span>
+            <p>{{ account.username }}</p>
+            <p>Nível: {{ account.quality }}</p>
+        </div>
+    </div>
+</div>

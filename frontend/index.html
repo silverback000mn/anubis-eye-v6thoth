@@ -2,26 +2,34 @@
 <html>
 <head>
     <title>anubis-eye-v6thoth</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: #0f0c29;
-            color: #00f7ff;
-            font-family: 'Courier New', monospace;
-        }
         .eye-of-horus {
             width: 100px;
             animation: pulse 2s infinite;
+            margin: 20px auto;
+            display: block;
         }
         @keyframes pulse {
             0% { opacity: 0.7; }
             50% { opacity: 1; }
             100% { opacity: 0.7; }
         }
+        #status {
+            background-color: #1a1a2e;
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>𓃭 anubis-eye-v6thoth 𓃭</h1>
-    <img src="eye_of_horus.png" class="eye-of-horus">
-    <p>System status: <span id="status">Loading...</span></p>
+    <div class="container">
+        <h1>𓃭 anubis-eye-v6thoth 𓃭</h1>
+        <img src="/static/eye_of_horus.png" class="eye-of-horus" alt="Olho de Hórus">
+        <div id="status">Carregando status do sistema...</div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+# book_of_thoth.py
+import sqlite3
+from cryptography.fernet import Fernet
+import json
+
+class SacredDatabase:
+    def __init__(self):
+        self.key = Fernet.generate_key()
+        self.cipher = Fernet(self.key)
+        self.conn = sqlite3.connect('book_of_thoth.db')
+        self._init_db()
+
+    def _init_db(self):
+        """Cria estrutura inicial do banco"""
+        cursor = self.conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS accounts (
+                id TEXT PRIMARY KEY,
+                encrypted_data BLOB,
+                creation_date TEXT,
+                last_activity TEXT
+            )
+        ''')
+        self.conn.commit()
+
+    def save_account(self, account_data):
+        """Armazena conta com criptografia"""
+        encrypted = self.cipher.encrypt(
+            json.dumps(account_data).encode()
+        )
+        cursor = self.conn.cursor()
+        cursor.execute('''
+            INSERT INTO accounts VALUES (?, ?, ?, ?)
+        ''', (
+            account_data['id'],
+            encrypted,
+            datetime.now().isoformat(),
+            datetime.now().isoformat()
+        ))
+        self.conn.commit()
+
+    def get_account(self, account_id):
+        """Recupera conta descriptografada"""
+        cursor = self.conn.cursor()
+        cursor.execute('''
+            SELECT encrypted_data FROM accounts WHERE id = ?
+        ''', (account_id,))
+        result = cursor.fetchone()
+        if result:
+            return json.loads(self.cipher.decrypt(result[0]).decode())
+        return None

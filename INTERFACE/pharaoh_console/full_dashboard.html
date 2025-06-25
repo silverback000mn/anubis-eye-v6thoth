@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anúbis Eye v6 - Visão do Faraó</title>
+    <link rel="stylesheet" href="neon_styles.css">
+    <script src="realtime.js"></script>
+</head>
+<body>
+    <div class="dashboard-grid">
+        <!-- Seção Esquerda: Comandos -->
+        <div class="command-panel">
+            <h2>𓃭 Comandos Divinos</h2>
+            <div id="command-history"></div>
+            <input type="text" id="divine-command" placeholder="UPDATE MODULE RA">
+            <button onclick="sendCommand()">Executar 𓂀</button>
+        </div>
+
+        <!-- Seção Central: Monitoramento -->
+        <div class="monitor-panel">
+            <div class="real-time-stats">
+                <h3>𓁩 Métricas AO VIVO</h3>
+                <div class="stat" id="accounts-created">0</div>
+                <div class="stat" id="proxy-health">100%</div>
+                <div class="stat" id="ban-risk">0%</div>
+            </div>
+            <canvas id="performance-chart"></canvas>
+        </div>
+
+        <!-- Seção Direita: Contas -->
+        <div class="accounts-panel">
+            <h3>𓃢 Contas Sagradas</h3>
+            <div class="account-list" id="high-quality-accounts"></div>
+        </div>
+    </div>
+
+    <script>
+        // Conexão WebSocket para dados em tempo real
+        const socket = new WebSocket("wss://anubis-eye.com/realtime");
+        
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            updateDashboard(data);
+        };
+
+        function sendCommand() {
+            const command = document.getElementById("divine-command").value;
+            socket.send(JSON.stringify({
+                type: "command",
+                content: command
+            }));
+        }
+    </script>
+</body>
+</html>

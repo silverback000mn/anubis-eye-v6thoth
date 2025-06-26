@@ -1,0 +1,18 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #0f0c29;
+    color: #00f7ff;
+    text-align: center;
+}
+
+.eye {
+    width: 100px;
+    margin: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
